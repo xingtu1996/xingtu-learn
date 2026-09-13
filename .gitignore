@@ -1,0 +1,38 @@
+# ─── 隐私与凭据 ───
+.env
+*.key
+*.pem
+**/*credential*
+**/*token*.json
+private/
+raw-private/
+**/_private/**
+
+# ─── 版权物与大文件（教材/讲义/题库/视频一律不入库）───
+*.pdf
+*.doc
+*.docx
+*.rar
+*.zip
+*.7z
+*.mp4
+*.mov
+*.mp3
+*.xmind
+*.epub
+
+# ─── 系统与编辑器 ───
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*~
+
+# ─── 运行时 ───
+__pycache__/
+*.pyc
+node_modules/
+venv/
+.venv/
+dist/

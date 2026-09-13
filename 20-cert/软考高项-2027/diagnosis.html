@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>软考高项 · 诊断问卷</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; background: #f5f6fa; color: #2d3436; line-height: 1.6; }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 24px 16px 60px; }
+  h1 { font-size: 22px; margin-bottom: 4px; }
+  .sub { color: #636e72; font-size: 14px; margin-bottom: 24px; }
+  .card { background: #fff; border-radius: 12px; padding: 20px; margin-bottom: 16px; box-shadow: 0 1px 4px rgba(0,0,0,.06); }
+  .card h2 { font-size: 16px; margin-bottom: 4px; }
+  .card .hint { font-size: 12px; color: #636e72; margin-bottom: 14px; }
+  .item { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px dashed #eee; }
+  .item:last-child { border-bottom: none; }
+  .item .label { font-size: 14px; }
+  .opts { display: flex; gap: 6px; }
+  .opts label { cursor: pointer; font-size: 13px; padding: 4px 10px; border: 1px solid #ddd; border-radius: 20px; transition: all .15s; user-select: none; }
+  .opts input { display: none; }
+  .opts input:checked + span { }
+  .opts label.yi input:checked ~ span { background:#27ae60; color:#fff; border-color:#27ae60; }
+  /* 简单处理：选中样式 */
+  .opts label { position: relative; }
+  .opts label.selected-yi { background:#e8f8ee; border-color:#27ae60; color:#1e8449; font-weight:600; }
+  .opts label.selected-ban { background:#fef5e7; border-color:#e67e22; color:#b9770e; font-weight:600; }
+  .opts label.selected-kong { background:#fdedec; border-color:#c0392b; color:#b03a2e; font-weight:600; }
+  .opts span { }
+  .score-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .score-row input { width: 90px; padding: 8px; border: 1px solid #ccc; border-radius: 8px; font-size: 15px; }
+  .btn { display: block; width: 100%; padding: 14px; font-size: 16px; font-weight: 600; background: #2d3436; color: #fff; border: none; border-radius: 10px; cursor: pointer; margin-top: 8px; }
+  .btn:hover { background: #636e72; }
+  #result { display: none; }
+  #result.show { display: block; }
+  .result-card { border-left: 4px solid #2d3436; }
+  .conclusion { font-size: 18px; font-weight: 700; margin-bottom: 10px; }
+  .badge { display:inline-block; padding: 3px 10px; border-radius: 14px; font-size: 13px; font-weight:600; margin-left:6px; }
+  .badge-green { background:#e8f8ee; color:#1e8449; }
+  .badge-orange { background:#fef5e7; color:#b9770e; }
+  .badge-red { background:#fdedec; color:#b03a2e; }
+  .weak-list { margin-top: 10px; }
+  .weak-list ul { margin: 6px 0 0 18px; }
+  .note { font-size: 12px; color: #636e72; margin-top: 10px; }
+  .copy-row { margin-top: 12px; padding: 10px; background:#f8f9fa; border-radius:8px; font-size:13px; font-family:monospace; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>软考高项 · 诊断问卷</h1>
+  <div class="sub">测出基线 → 决定从 8 个月计划的哪个阶段开始（约 10 分钟）</div>
+
+  <!-- 第一部分：管理领域 -->
+  <div class="card">
+    <h2>一、管理领域自评</h2>
+    <div class="hint">PMP 底子核对——已懂直接跳过，半懂/空白列入补差</div>
+    <div id="mgmtList"></div>
+  </div>
+
+  <!-- 第二部分：高项增量 -->
+  <div class="card">
+    <h2>二、高项新增 4 块</h2>
+    <div class="hint">PMP 没有的、必须补的：中国化 / 计算 / IT / 论文</div>
+    <div id="incrList"></div>
+  </div>
+
+  <!-- 第三部分：真题实测 -->
+  <div class="card">
+    <h2>三、真题实测（可选，但最准）</h2>
+    <div class="hint">拿 1 套综合知识真题（75 题）限时 120 分钟做，填得分；没做就留空，按自评兜底</div>
+    <div class="score-row">
+      <span>综合知识得分：</span>
+      <input type="number" id="score" min="0" max="75" placeholder="如 52">
+      <span>/ 75 分</span>
+    </div>
+    <div class="note">案例题、论文要不要优先练？在结论区看增量子项的强弱点即可。</div>
+  </div>
+
+  <button class="btn" onclick="diagnose()">生成诊断</button>
+
+  <!-- 结果 -->
+  <div id="result" class="card result-card">
+    <div class="conclusion" id="conclusion"></div>
+    <div class="weak-list" id="weakList"></div>
+    <div class="copy-row" id="copyRow"></div>
+    <div class="note">结果写回计划：<b>specs/学历提升规划_20260819/05_软考高项备考计划_2027.md</b> → 阶段一，从对应周开始。</div>
+  </div>
+</div>
+
+<script>
+  const MGMT = ['整体管理','范围管理','进度管理','成本管理','质量管理','资源管理','沟通管理','风险管理','采购管理','干系人管理'];
+  const INCR = ['中国化（立项/招投标/政府采购/监理/法规）','计算题（挣值/关键路径/网络图/三点估算）','IT 技术（网络/数据库/安全/云/AI 概念）','论文写作（机打 2500 字）'];
+
+  function buildList(arr, group, elId) {
+    const el = document.getElementById(elId);
+    el.innerHTML = arr.map((name, i) => `
+      <div class="item">
+        <div class="label">${i+1}. ${name}</div>
+        <div class="opts">
+          ${[['已懂','yi','#27ae60'],['半懂','ban','#e67e22'],['空白','kong','#c0392b']].map(([txt, val, color]) => `
+            <label class="${val}" data-color="${color}" onclick="pick(this,'${group}',${i},'${val}')">${txt}</label>
+          `).join('')}
+        </div>
+      </div>`).join('');
+  }
+  function pick(el, group, idx, val) {
+    const siblings = el.parentElement.querySelectorAll('label');
+    siblings.forEach(s => { s.classList.remove('selected-yi','selected-ban','selected-kong'); });
+    el.classList.add(val === 'yi' ? 'selected-yi' : val === 'ban' ? 'selected-ban' : 'selected-kong');
+    el.dataset.val = val;
+  }
+  function countBy(group, val) {
+    return document.querySelectorAll(`[data-group="${group}"] label[data-val="${val}"]`).length;
+  }
+  function weakList(group) {
+    return [...document.querySelectorAll(`[data-group="${group}"]`)].filter(item =>
+      ['ban','kong'].includes(item.querySelector('label.selected-ban,label.selected-kong')?.dataset.val)
+    ).map(item => item.querySelector('.label').textContent.trim());
+  }
+
+  function diagnose() {
+    document.querySelectorAll('.item').forEach((item, i) => {
+      const idx = [...item.parentElement.children].indexOf(item);
+      const isMgmt = item.closest('#mgmtList');
+      item.dataset.group = isMgmt ? 'mgmt' : 'incr';
+    });
+    // 未选默认空白
+    document.querySelectorAll('.item .opts').forEach(opts => {
+      if (!opts.querySelector('label[data-val]')) {
+        const blank = opts.querySelector('label.kong'); blank.dataset.val = 'kong'; blank.classList.add('selected-kong');
+      }
+    });
+
+    const mgmtYi = countBy('mgmt','yi');
+    const incrYi = countBy('incr','yi');
+    const score = document.getElementById('score').value.trim();
+    const hasScore = score !== '';
+    const sc = hasScore ? parseInt(score,10) : NaN;
+
+    let conclusion = '', badge = '';
+    if (hasScore && !isNaN(sc)) {
+      if (sc >= 60) { conclusion = '直接进【强化期】——真题刷透 + 计算专项 + 论文素材'; badge = 'badge-green'; }
+      else if (sc >= 45) { conclusion = '补差期 4 周——只补增量 4 块，管理用真题验证'; badge = 'badge-orange'; }
+      else { conclusion = '补差期 6 周——增量 4 块 + 薄弱管理领域回刷'; badge = 'badge-red'; }
+    } else {
+      if (mgmtYi >= 8) { conclusion = '补差期 4 周——管理底子扎实，只补增量 4 块'; badge = 'badge-green'; }
+      else { conclusion = '补差期 6 周——增量 4 块 + 薄弱管理领域回刷'; badge = 'badge-orange'; }
+    }
+    document.getElementById('conclusion').innerHTML = conclusion + `<span class="badge ${badge}">${hasScore ? '实测' : '自评'}</span>`;
+
+    const weakMgmt = weakList('mgmt');
+    const weakIncr = weakList('incr');
+    let html = '<b>弱区清单（补差重点）：</b><ul>';
+    if (weakMgmt.length) html += `<li>管理领域：${weakMgmt.join('、')}</li>`;
+    if (weakIncr.length) html += `<li>高项增量：${weakIncr.join('、')}</li>`;
+    if (!weakMgmt.length && !weakIncr.length) html += '<li>无弱区——直接按阶段三冲刺训练</li>';
+    html += '</ul>';
+    document.getElementById('weakList').innerHTML = html;
+
+    document.getElementById('copyRow').innerHTML =
+      `结论行：管理✅ ${mgmtYi}/10 ｜ 增量✅ ${incrYi}/4 ｜ 实测 ${hasScore ? sc + '/75' : '未测'} ｜ ${conclusion}`;
+
+    document.getElementById('result').classList.add('show');
+    document.getElementById('result').scrollIntoView({ behavior:'smooth' });
+  }
+
+  buildList(MGMT, 'mgmt', 'mgmtList');
+  buildList(INCR, 'incr', 'incrList');
+</script>
+</body>
+</html>
