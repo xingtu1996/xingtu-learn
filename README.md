@@ -144,6 +144,17 @@ cp -r xingtu-learn/templates/ ./my-learning-log
 
 ---
 
+## 关于作者
+
+我是**行途**，一线技术人 + 仍在写代码。这里记录我学习 AI 工程化的路径与笔记，边学边做，不空谈。
+
+- 🔔 公众号 **「行途技术手记」**：微信搜索关注，看 AI 工程化落地实战
+- 🐙 GitHub：[@xingtu1996](https://github.com/xingtu1996)
+- 📦 仓库：[xingtu1996/xingtu-learn](https://github.com/xingtu1996/xingtu-learn)
+
+---
+
+
 ## License
 
 [MIT](LICENSE) © 行途 XingTu
