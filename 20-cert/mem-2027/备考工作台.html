@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>北邮MEM 2027 · 备考工作台</title>
+<style>
+  :root{
+    --ink:#1a1a2e; --sub:#5b5b6e; --line:#e6e6ef; --bg:#f4f5f9; --card:#ffffff;
+    --blue:#056DE8; --red:#d63031; --green:#00a86b; --amber:#e6a23c;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;padding:24px 14px}
+  .wrap{max-width:1060px;margin:0 auto}
+  a{color:var(--blue);text-decoration:none}
+  a:hover{text-decoration:underline}
+  header{background:linear-gradient(135deg,#0b3d91,#056DE8);color:#fff;border-radius:16px;padding:24px 28px;margin-bottom:18px}
+  header h1{font-size:22px;letter-spacing:1px}
+  header .sub{opacity:.85;font-size:13px;margin-top:4px}
+  .kpis{display:flex;gap:12px;margin-top:16px;flex-wrap:wrap}
+  .kpi{background:rgba(255,255,255,.14);border-radius:10px;padding:10px 18px;text-align:center;min-width:96px}
+  .kpi b{font-size:24px;display:block}
+  .kpi span{font-size:12px;opacity:.85}
+  h2{font-size:17px;margin:26px 0 12px;padding-left:11px;border-left:4px solid var(--blue)}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:12px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  @media(max-width:760px){.grid2,.grid3{grid-template-columns:1fr}}
+  /* 管控目录 */
+  .toc-step{display:flex;align-items:center;gap:14px;padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:var(--card);margin-bottom:8px}
+  .toc-step:hover{border-color:var(--blue)}
+  .toc-num{flex:none;width:34px;height:34px;border-radius:50%;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px}
+  .toc-step.done .toc-num{background:var(--green)}
+  .toc-body{flex:1}
+  .toc-body b{font-size:14.5px}
+  .toc-body p{font-size:12.5px;color:var(--sub);margin-top:1px}
+  .toc-go{flex:none;font-size:12.5px;white-space:nowrap}
+  /* 今日任务 */
+  .today-head{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px}
+  .today-head .date{font-size:20px;font-weight:700}
+  .today-head .plan-tag{font-size:12.5px;color:var(--sub)}
+  .slot{display:flex;align-items:center;gap:12px;padding:11px 12px;border:1px solid var(--line);border-radius:10px;margin-top:8px}
+  .slot .t{flex:none;width:86px;font-size:12.5px;color:var(--sub)}
+  .slot .c{flex:1;font-size:14px}
+  .slot .r{flex:none;font-size:12px}
+  .chk{flex:none;width:22px;height:22px;border:2px solid #c6c6d4;border-radius:6px;cursor:pointer;display:flex;align-items:center;justify-content:center;background:#fff;transition:.15s}
+  .chk.on{background:var(--green);border-color:var(--green);color:#fff;font-size:14px}
+  .slot.done .c{color:var(--sub);text-decoration:line-through}
+  .progress-line{display:flex;align-items:center;gap:10px;margin-top:14px;font-size:13px;color:var(--sub)}
+  .bar{flex:1;height:8px;background:#ececf3;border-radius:99px;overflow:hidden}
+  .bar i{display:block;height:100%;background:var(--green);border-radius:99px;transition:.3s}
+  .streak{color:var(--amber);font-weight:600}
+  /* 资源卡片 */
+  .res{display:block;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;color:var(--ink)}
+  .res:hover{border-color:var(--blue);text-decoration:none}
+  .res b{font-size:14.5px}
+  .res p{font-size:12.5px;color:var(--sub);margin-top:3px}
+  .badge{display:inline-block;font-size:11px;padding:1px 7px;border-radius:99px;margin-left:6px;vertical-align:1px}
+  .b-ok{background:#e6f7ee;color:var(--green)}
+  .b-warn{background:#fdf1e5;color:var(--amber)}
+  .b-new{background:#eef3fe;color:var(--blue)}
+  /* DoD */
+  .dod{display:flex;gap:10px;align-items:flex-start;padding:8px 10px;border-bottom:1px dashed var(--line);font-size:14px}
+  .dod:last-child{border-bottom:none}
+  .dod .chk{margin-top:2px}
+  .dod.done span{color:var(--sub);text-decoration:line-through}
+  footer{text-align:center;color:var(--sub);font-size:12px;margin-top:30px;line-height:2}
+  .note{font-size:12.5px;color:var(--sub);background:#f0f4fb;border-radius:8px;padding:8px 12px;margin-top:10px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>北邮 MEM 2027 · 备考工作台</h1>
+  <div class="sub">专科起点 · 在职 · 88天冲刺 ｜ 初试 2026-12-19（周六）｜ 目标 ≥168 / 英语 ≥39 / 管综 ≥78</div>
+  <div class="kpis">
+    <div class="kpi"><b id="d-day">--</b><span>距初试（天）</span></div>
+    <div class="kpi"><b id="d-week">--</b><span>当前周次</span></div>
+    <div class="kpi"><b id="d-streak">0</b><span>连续打卡（天）</span></div>
+    <div class="kpi"><b id="d-total">0</b><span>累计打卡（天）</span></div>
+  </div>
+</header>
+
+<h2>📌 管控目录 · 从这里开始（按顺序读，8步全貌）</h2>
+<div id="toc"></div>
+
+<h2>✅ 今日任务 · 打卡区</h2>
+<div class="card">
+  <div class="today-head">
+    <span class="date" id="today-date">--</span>
+    <span class="plan-tag" id="today-week">--</span>
+  </div>
+  <div class="note" id="today-main">--</div>
+  <div id="slots"></div>
+  <div class="progress-line">
+    <span>今日进度</span>
+    <div class="bar"><i id="today-bar" style="width:0%"></i></div>
+    <span id="today-pct">0%</span>
+    <span class="streak" id="streak-text"></span>
+  </div>
+  <div class="note">打卡数据存在本机浏览器（localStorage），换浏览器/清缓存会丢；<b>权威记录在 checkin/ 周表</b>（每日20:45自动化也会写），两边周日对账。</div>
+</div>
+
+<h2>🔗 外部资源 · 一键跳转（2026-09-29 全部实测可达）</h2>
+<div class="grid3" id="res-ext"></div>
+
+<h2>📚 教材与工具 · 采购/安装状态</h2>
+<div class="grid2" id="res-buy"></div>
+
+<h2>🎯 备考实践阶梯（日练→周测→月考→全真）</h2>
+<div class="card">
+  <div class="dod"><b style="flex:none;width:64px">日练</b><span>墨墨50词 + 阅读1篇限时 + 主科10-15题（MBA大师章节练习）</span></div>
+  <div class="dod"><b style="flex:none;width:64px">周测</b><span>周六章节测30题 + 错题整理 → 记入 checkin 周表</span></div>
+  <div class="dod"><b style="flex:none;width:64px">月考</b><span>海绵MBA月度模考 → 全国排名记入 <a href="05_模考数据/模考记录.md">05_模考数据</a></span></div>
+  <div class="dod"><b style="flex:none;width:64px">全真</b><span>W7起×6次：纸面真题+严格3h+涂卡 → 记入模考记录</span></div>
+</div>
+
+<h2>🏁 「考证状态」就绪清单（进考场前逐项打勾）</h2>
+<div class="card" id="dod"></div>
+
+<footer>
+  SSoT 纪律：逐日任务以 <a href="逐日执行总览.md">逐日执行总览.md</a> 为准 ｜ 打卡权威记录在 <a href="checkin/2026-W40.md">checkin/</a> ｜ 复盘机制见 <a href="06_监控报告/监控机制与周报模板.md">06_监控报告</a><br>
+  工作台版本 v1.0 · 2026-09-29 ｜ 单文件零依赖，离线可用
+</footer>
+
+</div>
+
+<script>
+/* ============ 数据层 ============ */
+const EXAM_DATE = new Date('2026-12-19T08:30:00+08:00');
+const START_DATE = '2026-09-22';
+
+/* 逐日课表（SSoT=逐日执行总览.md，此处为镜像；W5起为周焦点） */
+const PLAN_DAILY = {
+  '2026-09-22':'逻辑｜老吕形式逻辑第1讲（命题）+做10题',
+  '2026-09-23':'数学｜算术·整数与奇偶+做10题',
+  '2026-09-24':'逻辑｜形式逻辑第2讲（预报名已完成✅）',
+  '2026-09-25':'数学｜算术·分数小数+做10题',
+  '2026-09-26':'逻辑｜第3讲（三段论）+做10题',
+  '2026-09-27':'数学｜算术章节测30题+逻辑错题整理（加量2h）',
+  '2026-09-28':'【摸底】2023真题：数学+逻辑+英语阅读（不计时，记基线分）',
+  '2026-09-29':'数学｜代数·整式+做10题',
+  '2026-09-30':'数学｜代数·分式+做10题',
+  '2026-10-01':'【国庆4h】数学｜代数·方程+做15题',
+  '2026-10-02':'【国庆4h】数学｜代数·不等式+做15题',
+  '2026-10-03':'【国庆4h】逻辑｜论证逻辑入门（削弱题，薛睿/老吕）',
+  '2026-10-04':'【国庆4h】数学｜代数章节测30题（目标≥60%）',
+  '2026-10-05':'【国庆4h】逻辑错题整理+英语阅读2篇精读',
+  '2026-10-06':'数学｜几何·平面几何+做10题',
+  '2026-10-07':'数学｜几何·解析几何基础+做10题',
+  '2026-10-08':'逻辑｜论证逻辑·加强题+做10题',
+  '2026-10-09':'写作｜看1篇论证有效性分析范文（找4个漏洞）',
+  '2026-10-10':'逻辑｜论证逻辑·假设题+做10题',
+  '2026-10-11':'数学几何章节测+写1篇论证有效性分析（加量2h）',
+  '2026-10-12':'本周错题整理+英语阅读2篇（加量2h）',
+  '2026-10-13':'数学｜数据分析·排列组合+做10题',
+  '2026-10-14':'数学｜数据分析·概率基础+做10题',
+  '2026-10-15':'逻辑｜综合推理·简单题+做10题',
+  '2026-10-16':'写作｜论证有效性分析1篇（掐时25分钟）',
+  '2026-10-17':'逻辑｜本周错题二刷',
+  '2026-10-18':'数学分册全部过完+错题本整理（加量2h）',
+  '2026-10-19':'【阶段验收】2024真题（不计时），对比摸底进步',
+};
+const PLAN_WEEKLY = [
+  ['2026-10-20','W5 真题强化｜2023真题二刷+小作文模板启动（周六完整管综3h）'],
+  ['2026-10-27','W6 真题强化｜2024真题二刷+大作文模板（阅读每篇对≥3题）'],
+  ['2026-11-03','W7 真题强化｜2025真题二刷+【全真模考① 11.8 目标≥145】'],
+  ['2026-11-10','W8 弱项专项｜错题本二刷+【全真模考② 目标≥155】'],
+  ['2026-11-17','W9 冲刺｜错题回归+作文默写+【全真模考③ 稳定≥150】'],
+  ['2026-11-24','W10 冲刺｜答题顺序定型+【全真模考④ 冲160 含涂卡】'],
+  ['2026-12-01','W11 冲刺｜高频词+错题最后一遍+【全真模考⑤ 稳定≥165】'],
+  ['2026-12-08','W12 收尾｜12.9打印准考证+最后1次模考（不刷新题）'],
+  ['2026-12-15','W13 考前｜背模板+调作息 → 12.19 上考场'],
+];
+
+const TOC = [
+  ['00_章程/项目章程.md','项目章程','为什么考、目标分数、预算授权、里程碑 M0-M8（先读这个）', true],
+  ['01_计划文档/PMP式备考执行规划.md','PMP主规划','全局视图：WBS/进度/风险/监控机制（理解全局再执行）', true],
+  ['逐日执行总览.md','逐日课表','每天干什么的唯一权威（执行层SSoT）', true],
+  ['resources.md','资源清单','跟谁学：视频/书/App，全部免费优先', true],
+  ['02_真题与模考/真题与备考实践指南.md','真题指南','拿什么练：16年真题用法+四级考试体系', true],
+  ['03_资源清单/采购渠道清单.md','采购清单','买什么：京东正版教材，闲鱼只买二手书（盗版课红线）', true],
+  ['checkin/2026-W40.md','本周打卡','记录层：每日打卡落点（自动化20:45也写这里）', true],
+  ['06_监控报告/监控机制与周报模板.md','监控周报','复盘层：KPI定义+周报模板+系统验收报告', true],
+];
+
+const RES_EXT = [
+  ['B站·老吕考研','逻辑/数学/写作全套免费系统课（要点7讲/33篇）','https://space.bilibili.com/36251753','ok'],
+  ['GitHub·199管综真题库','2009-2026逐年真题+解析，md校核版（🆕开源）','https://github.com/dollarser/kaoyan-199-guanzong-real-exams','new'],
+  ['GitHub·MBA考研笔记','数学/逻辑/写作/英语全科笔记（开源）','https://github.com/leejuen/MBA','new'],
+  ['中国教育在线·真题','历年真题无水印+答案（官方背景站）','https://kaoyan.eol.cn/e_ky/zt/common/zhenti/','ok'],
+  ['英语真题下载','英语二真题无水印可下载','https://zhenti.burningvocabulary.com','ok'],
+  ['研招网','报名/网上确认/准考证唯一官方入口','https://yz.chsi.com.cn','ok'],
+  ['MBA大师 App','免费系统课+5000题+错题本+模考','https://apps.apple.com/cn/app/MBA%E5%A4%A7%E5%B8%88/id1051258696','ok'],
+  ['北邮经管学院','招生简章/复试细则（412=反爬，浏览器直接开）','https://sem.bupt.edu.cn','warn'],
+  ['海绵MBA','应用商店搜「海绵MBA」：真题套卷+月度模考排名','https://www.cisis.com.cn/rjxz/2508.html','ok'],
+];
+
+const RES_BUY = [
+  ['陈剑《数学高分指南》','京东/当当 2027版 ¥60-80 ｜ 闲鱼二手 ¥20-40','待下单'],
+  ['老吕《母题800练》+《条充400》','刷题主力 ¥80-100','待下单'],
+  ['田静《句句真研》','英语长难句 ¥50-70','待下单'],
+  ['老吕《写作33篇》','⚠️ 等2027新版（约10月中上市）','等待新版'],
+  ['王江涛《高分写作》','作文模板来源（改成自己的版本）','10月中'],
+  ['墨墨背单词','已在用：每日50词·考研英语二词书','✅ 在跑'],
+];
+
+const DOD = [
+  '最近2次全真模考总分 ≥165（目标168留余量）',
+  '英语二模考 ≥42（红线39留余量）',
+  '管综模考 ≥85（红线78留余量）',
+  '三年真题（2023/2024/2025）三刷完成，错题本二刷完成',
+  '答题顺序定型：管综=逻辑→小作文→大作文→数学',
+  '论效25分钟成文，找4漏洞模板能默写',
+  '英语大小作文模板能默写',
+  '涂卡节奏演练≥3次（每模块做完即涂）',
+  '网上确认通过（11月上旬）',
+  '准考证打印×3（12.9起）+ 考试物品备齐',
+];
+
+/* ============ 工具 ============ */
+const $ = s => document.querySelector(s);
+const fmt = d => `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+const today = fmt(new Date());
+const store = {
+  get:(k,d)=>{try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},
+  set:(k,v)=>localStorage.setItem(k,JSON.stringify(v))
+};
+
+/* ============ 倒计时与周次 ============ */
+const daysLeft = Math.max(0, Math.ceil((EXAM_DATE - new Date())/86400000));
+$('#d-day').textContent = daysLeft;
+(function(){
+  const start = new Date(START_DATE+'T00:00:00+08:00');
+  const w = Math.min(13, Math.max(1, Math.floor((new Date()-start)/(7*86400000))+1));
+  $('#d-week').textContent = 'W'+w;
+})();
+
+/* ============ 管控目录 ============ */
+$('#toc').innerHTML = TOC.map((t,i)=>`
+  <div class="toc-step ${t[3]?'done':''}">
+    <div class="toc-num">${i+1}</div>
+    <div class="toc-body"><b>${t[1]}</b><p>${t[2]}</p></div>
+    <a class="toc-go" href="${t[0]}">打开 →</a>
+  </div>`).join('');
+
+/* ============ 今日任务 ============ */
+function planOf(dateStr){
+  if (PLAN_DAILY[dateStr]) return PLAN_DAILY[dateStr];
+  let hit = null;
+  for (const [start, text] of PLAN_WEEKLY){ if (dateStr >= start) hit = text; }
+  return hit || '（计划外日期，查看逐日执行总览）';
+}
+$('#today-date').textContent = today.replace(/-/g,'.');
+$('#today-week').textContent = '初试 12.19 · 还剩 '+daysLeft+' 天';
+$('#today-main').innerHTML = '📖 今日主任务：<b>'+planOf(today)+'</b>';
+
+const SLOTS = [
+  ['commute','通勤 20min','墨墨背单词（新词50+复习）','墨墨App'],
+  ['noon','午休 15min','英语阅读1篇（限时，2010年起顺序做早年真题）','海绵MBA真题'],
+  ['night','晚上 90min','今日主任务（见上方）','B站老吕+母题800'],
+  ['bed','睡前 10min','墨墨复习今日词','墨墨App'],
+];
+function renderSlots(){
+  const done = store.get('xt_chk_'+today, []);
+  $('#slots').innerHTML = SLOTS.map(s=>`
+    <div class="slot ${done.includes(s[0])?'done':''}" data-id="${s[0]}">
+      <div class="chk ${done.includes(s[0])?'on':''}">${done.includes(s[0])?'✓':''}</div>
+      <div class="t">${s[1]}</div>
+      <div class="c">${s[2]}</div>
+      <div class="r">${s[3]}</div>
+    </div>`).join('');
+  document.querySelectorAll('.slot').forEach(el=>{
+    el.querySelector('.chk').onclick = ()=>{
+      const id = el.dataset.id;
+      let arr = store.get('xt_chk_'+today, []);
+      arr = arr.includes(id) ? arr.filter(x=>x!==id) : [...arr, id];
+      store.set('xt_chk_'+today, arr);
+      renderSlots(); renderStats();
+    };
+  });
+  const pct = Math.round(done.length/SLOTS.length*100);
+  $('#today-bar').style.width = pct+'%';
+  $('#today-pct').textContent = pct+'%';
+}
+
+/* ============ 打卡统计（streak/total） ============ */
+function dayFull(dateStr){
+  const arr = store.get('xt_chk_'+dateStr, []);
+  return arr.length >= 3; /* 4个slot完成3个即算当日打卡 */
+}
+function renderStats(){
+  let streak = 0, total = 0;
+  const d = new Date();
+  for (let i=0;i<120;i++){
+    const ds = fmt(d);
+    if (store.get('xt_chk_'+ds, null) !== null && dayFull(ds)) total++;
+    d.setDate(d.getDate()-1);
+  }
+  const d2 = new Date();
+  /* 今天若未满，从昨天往前数 streak */
+  if (!dayFull(fmt(d2))) d2.setDate(d2.getDate()-1);
+  while (dayFull(fmt(d2))){ streak++; d2.setDate(d2.getDate()-1); }
+  $('#d-streak').textContent = streak;
+  $('#d-total').textContent = total;
+  $('#streak-text').textContent = streak>0 ? '🔥 连续 '+streak+' 天' : '';
+}
+
+/* ============ 资源卡片 ============ */
+const BADGE = {ok:'<span class="badge b-ok">实测可达</span>', new:'<span class="badge b-new">新增·实测可达</span>', warn:'<span class="badge b-warn">浏览器访问</span>'};
+$('#res-ext').innerHTML = RES_EXT.map(r=>`
+  <a class="res" href="${r[2]}" target="_blank" rel="noopener">
+    <b>${r[0]}</b>${BADGE[r[3]]}<p>${r[1]}</p>
+  </a>`).join('');
+$('#res-buy').innerHTML = RES_BUY.map(r=>`
+  <div class="res" style="cursor:default">
+    <b>${r[0]}</b><span class="badge ${r[2].startsWith('✅')?'b-ok':'b-warn'}">${r[2]}</span><p>${r[1]}</p>
+  </div>`).join('');
+
+/* ============ DoD 清单 ============ */
+function renderDod(){
+  const done = store.get('xt_dod', []);
+  $('#dod').innerHTML = DOD.map((t,i)=>`
+    <div class="dod ${done.includes(i)?'done':''}" data-i="${i}">
+      <div class="chk ${done.includes(i)?'on':''}">${done.includes(i)?'✓':''}</div>
+      <span>${t}</span>
+    </div>`).join('');
+  document.querySelectorAll('#dod .dod').forEach(el=>{
+    el.querySelector('.chk').onclick = ()=>{
+      const i = +el.dataset.i;
+      let arr = store.get('xt_dod', []);
+      arr = arr.includes(i) ? arr.filter(x=>x!==i) : [...arr, i];
+      store.set('xt_dod', arr);
+      renderDod();
+    };
+  });
+}
+
+renderSlots(); renderStats(); renderDod();
+</script>
+</body>
+</html>
