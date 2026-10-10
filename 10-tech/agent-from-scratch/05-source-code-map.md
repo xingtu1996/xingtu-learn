@@ -99,6 +99,6 @@ if dynamic_skills:
 
 ## 六、待验证
 
-- 仓库默认接 DeepSeek 和火山方舟，我手上是 CodeMax 的 Claude/DeepSeek 通道，能不能直接改 `support/` 的模型层接上去，还没试
+- 仓库默认接 DeepSeek 和火山方舟，我手上是 内部 AI 平台 的 Claude/DeepSeek 通道，能不能直接改 `support/` 的模型层接上去，还没试
 - 08 幕的生图生视频要走方舟媒体服务，会产生真实费用，量级待确认
 - 九幕我目前只读了 00-08 的 core，support/ 里的运行支撑（HTTP、流式、记录）还没读
