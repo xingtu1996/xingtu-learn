@@ -134,7 +134,7 @@ cp -r xingtu-learn/templates/ ./my-learning-log
 
 **行途 XingTu**——一线 AI 工程化实践者，资深技术经理，既带团队也写代码。
 
-- 公众号「行途技术手记」（长文首发）
+- 公众号「行途 XingTu」（长文首发）
 - X / GitHub：`@xingtu1996`
 - 方法论旗舰仓：[xingtu-ai-engineering](https://github.com/xingtu1996/xingtu-ai-engineering)
 
@@ -148,7 +148,7 @@ cp -r xingtu-learn/templates/ ./my-learning-log
 
 我是**行途**，一线技术人 + 仍在写代码。这里记录我学习 AI 工程化的路径与笔记，边学边做，不空谈。
 
-- 🔔 公众号 **「行途技术手记」**：微信搜索关注，看 AI 工程化落地实战
+- 🔔 公众号 **「行途 XingTu」**：微信搜索关注，看 AI 工程化落地实战
 - 🐙 GitHub：[@xingtu1996](https://github.com/xingtu1996)
 - 📦 仓库：[xingtu1996/xingtu-learn](https://github.com/xingtu1996/xingtu-learn)
 
@@ -168,4 +168,4 @@ cp -r xingtu-learn/templates/ ./my-learning-log
 - 𝕏 X：[@xingtu1996](https://x.com/xingtu1996)（AI工程化实战，build in public）
 - GitHub：[github.com/xingtu1996](https://github.com/xingtu1996)
 - 🌐 个人站：[xingtu1996.pages.dev](https://xingtu1996.pages.dev)
-- 📱 公众号：「行途技术手记」（深度长文 + 可抄作业的实战经验）
+- 📱 公众号：「行途 XingTu」（深度长文 + 可抄作业的实战经验）
