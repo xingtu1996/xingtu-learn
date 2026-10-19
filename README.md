@@ -1,4 +1,4 @@
-# XingTu Learn · 公开学习工程
+# 行途技术 Learn · 公开学习工程
 
 > 一位技术管理者的学习过程开源仓：把「学会一件事」的全过程版本化——计划 → 输入 → 笔记 → 产物 → 复盘 → 方法沉淀。
 > **让学习能力本身可验证、可复用、可追溯。**
@@ -24,7 +24,7 @@
 
 ## 它是什么：过程态资产
 
-行途开源矩阵里已有 20 个仓库，但全是**结论态**——想清楚了才发。没有一样记录「还没想清楚时的挣扎痕迹」。
+行途技术开源矩阵里已有 20 个仓库，但全是**结论态**——想清楚了才发。没有一样记录「还没想清楚时的挣扎痕迹」。
 
 而恰恰是后者对读者价值最高（能看到真实的爬坡曲线），对作品集也最稀缺（成品人人有，爬坡证据没人有）。
 
@@ -132,9 +132,9 @@ cp -r xingtu-learn/templates/ ./my-learning-log
 
 ## 关于
 
-**行途 XingTu**——一线 AI 工程化实践者，资深技术经理，既带团队也写代码。
+**行途技术**——一线 AI 工程化实践者，资深技术经理，既带团队也写代码。
 
-- 公众号「行途 XingTu」（长文首发）
+- 公众号「行途技术」（长文首发）
 - X / GitHub：`@xingtu1996`
 - 方法论旗舰仓：[xingtu-ai-engineering](https://github.com/xingtu1996/xingtu-ai-engineering)
 
@@ -146,9 +146,9 @@ cp -r xingtu-learn/templates/ ./my-learning-log
 
 ## 关于作者
 
-我是**行途**，一线技术人 + 仍在写代码。这里记录我学习 AI 工程化的路径与笔记，边学边做，不空谈。
+我是**行途技术**，一线技术人 + 仍在写代码。这里记录我学习 AI 工程化的路径与笔记，边学边做，不空谈。
 
-- 🔔 公众号 **「行途 XingTu」**：微信搜索关注，看 AI 工程化落地实战
+- 🔔 公众号 **「行途技术」**：微信搜索关注，看 AI 工程化落地实战
 - 🐙 GitHub：[@xingtu1996](https://github.com/xingtu1996)
 - 📦 仓库：[xingtu1996/xingtu-learn](https://github.com/xingtu1996/xingtu-learn)
 
@@ -157,15 +157,15 @@ cp -r xingtu-learn/templates/ ./my-learning-log
 
 ## License
 
-[MIT](LICENSE) © 行途 XingTu
+[MIT](LICENSE) © 行途技术
 
 ---
 
-## 👤 关于行途
+## 👤 关于行途技术
 
 一线 builder，仍在写代码。专注 AI 工具链与工程化落地，分享可抄作业的实战经验。
 
 - 𝕏 X：[@xingtu1996](https://x.com/xingtu1996)（AI工程化实战，build in public）
 - GitHub：[github.com/xingtu1996](https://github.com/xingtu1996)
 - 🌐 个人站：[xingtu1996.pages.dev](https://xingtu1996.pages.dev)
-- 📱 公众号：「行途 XingTu」（深度长文 + 可抄作业的实战经验）
+- 📱 公众号：「行途技术」（深度长文 + 可抄作业的实战经验）
