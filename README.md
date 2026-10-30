@@ -51,6 +51,7 @@
 | 轴 | 驱动源 | 线 | 状态 | 目录 |
 |----|--------|----|------|------|
 | **轴 A · 技术** | 兴趣与趋势 | Agent 全景（上下文 → 提示词 → 工具 → 循环） | 活跃 · 刚起步 | [`10-tech/agent-from-scratch/`](10-tech/agent-from-scratch/) |
+| **轴 A · 技术** | 工作与工具实践 | Codex 模型、额度、配置与工作流 | 活跃 · 建立中 | [`10-tech/codex-learning/`](10-tech/codex-learning/) |
 | **轴 B · 考证** | 考试 | 软考高项（信息系统项目管理师）2027 | 进行中 · 周打卡 | [`20-cert/软考高项-2027/`](20-cert/软考高项-2027/) |
 | **轴 B · 考证** | 考试 | PMP 2023（已考，回溯复盘） | 归档 · 记忆重建 | [`20-cert/pmp-2023/`](20-cert/pmp-2023/) |
 | **轴 C · 工作驱动** | **项目倒逼** | 多租户配置治理 | 学习中 | [`40-work-driven/`](40-work-driven/) |
@@ -132,9 +133,9 @@ cp -r xingtu-learn/templates/ ./my-learning-log
 
 ## 关于
 
-**行途技术**——一线 AI 工程化实践者，资深技术经理，既带团队也写代码。
+**行途 XingTu**——一线 AI 工程化实践者，资深技术经理，既带团队也写代码。
 
-- 公众号「行途技术」（长文首发）
+- 公众号「行途技术手记」（长文首发）
 - X / GitHub：`@xingtu1996`
 - 方法论旗舰仓：[xingtu-ai-engineering](https://github.com/xingtu1996/xingtu-ai-engineering)
 
@@ -146,9 +147,9 @@ cp -r xingtu-learn/templates/ ./my-learning-log
 
 ## 关于作者
 
-我是**行途技术**，一线技术人 + 仍在写代码。这里记录我学习 AI 工程化的路径与笔记，边学边做，不空谈。
+我是**行途 XingTu**，一线技术人 + 仍在写代码。这里记录我学习 AI 工程化的路径与笔记，边学边做，不空谈。
 
-- 🔔 公众号 **「行途技术」**：微信搜索关注，看 AI 工程化落地实战
+- 🔔 公众号 **「行途技术手记」**：微信搜索关注，看 AI 工程化落地实战
 - 🐙 GitHub：[@xingtu1996](https://github.com/xingtu1996)
 - 📦 仓库：[xingtu1996/xingtu-learn](https://github.com/xingtu1996/xingtu-learn)
 
@@ -157,15 +158,15 @@ cp -r xingtu-learn/templates/ ./my-learning-log
 
 ## License
 
-[MIT](LICENSE) © 行途技术
+[MIT](LICENSE) © 行途 XingTu
 
 ---
 
-## 👤 关于行途技术
+## 👤 关于行途 XingTu
 
 一线 builder，仍在写代码。专注 AI 工具链与工程化落地，分享可抄作业的实战经验。
 
 - 𝕏 X：[@xingtu1996](https://x.com/xingtu1996)（AI工程化实战，build in public）
 - GitHub：[github.com/xingtu1996](https://github.com/xingtu1996)
 - 🌐 个人站：[xingtu1996.pages.dev](https://xingtu1996.pages.dev)
-- 📱 公众号：「行途技术」（深度长文 + 可抄作业的实战经验）
+- 📱 公众号：「行途技术手记」（深度长文 + 可抄作业的实战经验）
