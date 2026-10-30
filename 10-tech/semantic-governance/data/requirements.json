@@ -1,0 +1,125 @@
+{
+  "version": "1.0",
+  "note": "全部为合成数据；仅用于演示，绝不包含实际公司、客户或个人信息",
+  "cases": [
+    {
+      "id": "R-001",
+      "title": "审批与测试均通过",
+      "approvals": [
+        {
+          "status": "approved",
+          "at": "2026-10-01T09:00:00",
+          "source_id": "synthetic:approval-001"
+        }
+      ],
+      "tests": [
+        {
+          "status": "passed",
+          "source_id": "synthetic:ci-001"
+        }
+      ],
+      "release_at": "2026-10-01T11:00:00",
+      "expected": "allow"
+    },
+    {
+      "id": "R-002",
+      "title": "审批仍未通过",
+      "approvals": [
+        {
+          "status": "pending",
+          "at": "2026-10-01T09:00:00",
+          "source_id": "synthetic:approval-002"
+        }
+      ],
+      "tests": [
+        {
+          "status": "passed",
+          "source_id": "synthetic:ci-002"
+        }
+      ],
+      "release_at": "2026-10-01T11:00:00",
+      "expected": "block"
+    },
+    {
+      "id": "R-003",
+      "title": "测试失败",
+      "approvals": [
+        {
+          "status": "approved",
+          "at": "2026-10-01T09:00:00",
+          "source_id": "synthetic:approval-003"
+        }
+      ],
+      "tests": [
+        {
+          "status": "failed",
+          "source_id": "synthetic:ci-003"
+        }
+      ],
+      "release_at": "2026-10-01T11:00:00",
+      "expected": "block"
+    },
+    {
+      "id": "R-004",
+      "title": "审批晚于发布时刻",
+      "approvals": [
+        {
+          "status": "approved",
+          "at": "2026-10-01T12:00:00",
+          "source_id": "synthetic:approval-004"
+        }
+      ],
+      "tests": [
+        {
+          "status": "passed",
+          "source_id": "synthetic:ci-004"
+        }
+      ],
+      "release_at": "2026-10-01T11:00:00",
+      "expected": "block"
+    },
+    {
+      "id": "R-005",
+      "title": "审批缺少可核验来源",
+      "approvals": [
+        {
+          "status": "approved",
+          "at": "2026-10-01T09:00:00",
+          "source_id": ""
+        }
+      ],
+      "tests": [
+        {
+          "status": "passed",
+          "source_id": "synthetic:ci-005"
+        }
+      ],
+      "release_at": "2026-10-01T11:00:00",
+      "expected": "block"
+    },
+    {
+      "id": "R-006",
+      "title": "同一需求出现相互冲突的审批",
+      "approvals": [
+        {
+          "status": "approved",
+          "at": "2026-10-01T09:00:00",
+          "source_id": "synthetic:approval-006-a"
+        },
+        {
+          "status": "rejected",
+          "at": "2026-10-01T09:05:00",
+          "source_id": "synthetic:approval-006-b"
+        }
+      ],
+      "tests": [
+        {
+          "status": "passed",
+          "source_id": "synthetic:ci-006"
+        }
+      ],
+      "release_at": "2026-10-01T11:00:00",
+      "expected": "block"
+    }
+  ]
+}
