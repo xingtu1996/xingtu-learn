@@ -51,6 +51,7 @@
 | 轴 | 驱动源 | 线 | 状态 | 目录 |
 |----|--------|----|------|------|
 | **轴 A · 技术** | 兴趣与趋势 | Agent 全景（上下文 → 提示词 → 工具 → 循环） | 活跃 · 刚起步 | [`10-tech/agent-from-scratch/`](10-tech/agent-from-scratch/) |
+| **轴 A · 技术** | 兴趣与趋势 | 语义治理与 Context Graph：Semantica / FDE 审计实验 | 活跃 · 文档与样例就绪，待实测 | [`10-tech/semantic-governance/`](10-tech/semantic-governance/) |
 | **轴 B · 考证** | 考试 | 软考高项（信息系统项目管理师）2027 | 进行中 · 周打卡 | [`20-cert/软考高项-2027/`](20-cert/软考高项-2027/) |
 | **轴 B · 考证** | 考试 | PMP 2023（已考，回溯复盘） | 归档 · 记忆重建 | [`20-cert/pmp-2023/`](20-cert/pmp-2023/) |
 | **轴 C · 工作驱动** | **项目倒逼** | 多租户配置治理 | 学习中 | [`40-work-driven/`](40-work-driven/) |
