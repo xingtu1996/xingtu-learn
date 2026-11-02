@@ -36,6 +36,17 @@
 
 参考：[官方 Work / Codex](https://help.openai.com/en/articles/20001275-chatgpt-work-and-codex)、[官方用量与努力级别](https://help.openai.com/en/articles/20001516-managing-usage-with-gpt-6-astra-in-work-and-codex)。
 
+
+### 模型与额度的第二次纠偏（2026-11-02）
+
+用户补充：2026 年 11 月专业 Chat 因为暂不占用 Work/Codex 的执行额度，优先 **GPT-6 · High** 用于研究和审查；12 月共享额度规则变化后由用户再手动调整。这不代表 Chat High 自身完全不限次数。
+
+进一步观察：**选择 GPT-5.6 不一定比 GPT-6 更省使用额度。** OpenAI [Enterprise 令牌费率](https://help.openai.com/en/articles/20001415-chatgpt-rate-card-enterprise-token-based-pricing) 在标准 Work/Codex 中将 6 Luna、6.1 Terra 的 Token 单价列得比对应的 5.6 Luna、5.6 Terra 更低。但这些是 Enterprise 账单费率，不能直接当 Plus 消耗倍数。模型质量、输出 Token、任务复杂度、重试次数和是否通过验收都影响最终性价比。
+
+**v1.2 推荐**：Plus Work/Codex 默认 GPT-6 Luna / Medium；综合实施质量不足时优先测试 GPT-6.1 Terra / Medium，GPT-5.6 Terra / Medium 作为对照候选，不因旧版省额度的想象而强行固定 5.6。Pro 可以按实际额度使用更强型号。
+
+轻量实验在同一套 FDE 知识卡、PR 审核、XSA 任务合同上比较 `Luna Medium`、`6.1 Terra Medium`、`5.6 Terra Medium`，记录真实 Usage、通过率、返工与人工干预次数；未运行前结论仅为建议。
+
 ## 最小化流程
 
 ```mermaid
