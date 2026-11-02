@@ -24,15 +24,17 @@
 
 当任务正文与标题不符，应提示修正绑定，不允许凭猜测跳仓操作。
 
-## 模型选型也应是一份策略，而不是信仰
+## 模型选型也应是一份策略，而不是信仰（2026-11-02 更新）
 
-- Chat：普通分析与决策先采用实际可用的 GPT-6 Medium，复杂且信息充分再选 High。
-- Work：复杂的跨仓初始化可以首轮 GPT-6.1 Sol / High；成熟阶段 Sol Medium；日常笔记/整理 Terra Medium 或轻量模型；真正复杂故障或对抗审查可根据实际开放情况使用 Astra Low/Medium。
-- 较高推理不保证更好；少授权、缺事实和没有测试，不能靠模型升级修复。
-- Work / Codex 使用量与模型、推理强度、任务长度相关，分享“省 Token”前必须采真实 Usage。没有账单数据写 unknown。
-- 提示词中的模型推荐不代表平台自动切换；实例是否真启用了子 Agent 也需要运行证据。
+用户在看到真实 XF Work Sol/High 执行与 Plus 额度限制后明确纠偏：**行途所有专业 Work/Codex 优先采用 GPT-6 Luna · Medium，专业 Chat 采用 GPT-6 · Medium**。不要再默认按仓库分配 Sol/Terra/Astra，更不要全部用 High。对需要更长额度的用户，Pro 等高额度套餐可按复杂度升级 Sol/Astra，但并非必须升级，也非无限额度。
 
-参考：[OpenAI Work / Codex 官方说明](https://help.openai.com/en/articles/20001275-chatgpt-work-and-codex)、[Usage 与推理选择](https://help.openai.com/en/articles/20001516-managing-usage-with-gpt-6-astra-in-work-and-codex)。
+- Luna Medium 是统一基线；明确重复/低风险小任务可 Low；真正复杂故障、跨仓架构与安全难题，经输入与权限排查后可尝试 High 或临时选择更强模型。
+- 各界面可用模型及努力级别可能不同；提示词的推荐并不能替代实际选择、权限或子 Agent 支持。
+- Work/Codex 使用量按套餐共享机制计量；推理强度高不保证质量更好。无真实账户 Usage 时一律记 unknown。
+- **保留历史证据**：本轮真实 XF Work 主代理 Sol/High、子代理 Sol/Medium 的记录是过去执行事实，不是新方案预设。
+- 初步验证要比的是「每个验收通过的产物」所需的时间、额度、人工干预与缺陷，而不只是消息数。
+
+参考：[官方 Work / Codex](https://help.openai.com/en/articles/20001275-chatgpt-work-and-codex)、[官方用量与努力级别](https://help.openai.com/en/articles/20001516-managing-usage-with-gpt-6-astra-in-work-and-codex)。
 
 ## 最小化流程
 
@@ -51,7 +53,7 @@ flowchart LR
 
 1. 新 Work 不读原始聊天，只用 XSA 模板读取 GitHub 文件，是否能准确恢复项目职责？
 2. 同一个 FDE 目标同时给两个 Agent：只读检测文件重叠，是否能暂停后启动的重复写入并提示 owner？
-3. 用相同任务比较 Sol High 与 Medium（或 UI 真实可选的替代模型）的成功率、测试通过率、人工介入次数及实际 usage。不给未经测量的节省百分比。
+3. 用相同任务比较 Luna Medium 与 Luna High（若 UI 支持；必要时与 Sol Medium 对照）的成功率、测试通过率、人工介入次数及实际 usage。不给未经测量的节省百分比。
 
 ## 开源落点
 
