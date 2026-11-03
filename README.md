@@ -53,6 +53,7 @@
 | **轴 A · 技术** | 兴趣与趋势 | Agent 全景（上下文 → 提示词 → 工具 → 循环） | 活跃 · 刚起步 | [`10-tech/agent-from-scratch/`](10-tech/agent-from-scratch/) |
 | **轴 A · 技术** | 工作与工具实践 | Codex 模型、额度、配置与工作流 | 活跃 · 建立中 | [`10-tech/codex-learning/`](10-tech/codex-learning/) |
 | **轴 A · 技术** | 兴趣与趋势 | 语义治理与 Context Graph：Semantica / FDE 审计实验 | 活跃 · 文档与样例就绪，待实测 | [`10-tech/semantic-governance/`](10-tech/semantic-governance/) |
+| **轴 A · 技术** | 许可、版权与供应链合规 | 开源意义、权利归属、个人/团队/企业合规、安全升级 | 学习中 · v0.1 | [`10-tech/open-source-governance/`](10-tech/open-source-governance/) |
 | **轴 A · 技术** | AI 工具工程化 | Chat / Work / Codex 模型、额度与任务路由 | 活跃 · 2026-10-30 | [`10-tech/codex-usage-and-routing/`](10-tech/codex-usage-and-routing/) |
 | **轴 B · 考证** | 考试 | 软考高项（信息系统项目管理师）2027 | 进行中 · 周打卡 | [`20-cert/软考高项-2027/`](20-cert/软考高项-2027/) |
 | **轴 B · 考证** | 考试 | PMP 2023（已考，回溯复盘） | 归档 · 记忆重建 | [`20-cert/pmp-2023/`](20-cert/pmp-2023/) |
