@@ -19,7 +19,7 @@
 ### 根因一句话
 
 Worker 启动时 cwd 是 `~/Documents/Codex/2026-11-03/`（默认工作区），
-**没有切到 `/Users/lijiacheng/xingtu/`**，
+**没有切到 `<行途工作空间根>`**，
 导致零行途上下文——没读 AGENTS.md、没读 DESIGN.md、不知道 publish-pack-planning 五闸门。
 
 ---
@@ -57,7 +57,7 @@ Worker 不是记忆差，是它启动时拿到的上下文本来就薄——除�
 
 ### L1 默认工作区指路牌
 
-`~/Documents/Codex/AGENTS.md` 写"你走错了，去 /Users/lijiacheng/xingtu/"。
+`~/Documents/Codex/AGENTS.md` 写"你走错了，去 <行途工作空间根>"。
 Worker 启动读 cwd AGENTS.md 时被拦住。
 
 ### L2 Chat→Worker 入职提示词
