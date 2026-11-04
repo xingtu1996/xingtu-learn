@@ -7,10 +7,10 @@
 
 ## 你现在要做的第一件事（不是写代码，不是做任务）
 
-1. `cd /Users/lijiacheng/xingtu`
+1. `cd <行途工作空间根>`
 2. 读 `AGENTS.md`（行途铁律、技能路由、红线）
 3. 读 `DESIGN.md`（视觉 SSoT：三原色、封面白底、正文 review 橙红系）
-4. 确认你在正确的工作空间：`pwd` 输出应该是 `/Users/lijiacheng/xingtu`
+4. 确认你在正确的工作空间：`pwd` 输出应该是 `<行途工作空间根>`
 
 ## 你的身份
 
@@ -26,7 +26,7 @@
 - 正文 review 橙红系，F2644F ≥20 处才算通栏级
 - 禁旧色 #d71a1b / #056DE8 / 行途蓝
 
-## 如果你不在 /Users/lijiacheng/xingtu
+## 如果你不在 <行途工作空间根>
 
 说明 Chat 转 Worker 时没切目录。
 **先 cd 过去再开始任务**，不要在当前目录瞎干。
