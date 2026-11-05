@@ -54,6 +54,7 @@
 | **轴 A · 技术** | 工作与工具实践 | Codex 模型、额度、配置与工作流 | 活跃 · 建立中 | [`10-tech/codex-learning/`](10-tech/codex-learning/) |
 | **轴 A · 技术** | 兴趣与趋势 | 语义治理与 Context Graph：Semantica / FDE 审计实验 | 活跃 · 文档与样例就绪，待实测 | [`10-tech/semantic-governance/`](10-tech/semantic-governance/) |
 | **轴 A · 技术** | AI 工具工程化 | Chat / Work / Codex 模型、额度与任务路由 | 活跃 · 2026-10-30 | [`10-tech/codex-usage-and-routing/`](10-tech/codex-usage-and-routing/) |
+| **轴 B · 考证** | 资质维护 | PMP 续证 2026（免费教程核验 · 规则 SSoT） | 活跃 · 判断完成 / 执行未开始 | [`20-cert/pmp-renewal-2026/`](20-cert/pmp-renewal-2026/) |
 | **轴 B · 考证** | 考试 | 软考高项（信息系统项目管理师）2027 | 进行中 · 周打卡 | [`20-cert/软考高项-2027/`](20-cert/软考高项-2027/) |
 | **轴 B · 考证** | 考试 | PMP 2023（已考，回溯复盘） | 归档 · 记忆重建 | [`20-cert/pmp-2023/`](20-cert/pmp-2023/) |
 | **轴 C · 工作驱动** | **项目倒逼** | 多租户配置治理 | 学习中 | [`40-work-driven/`](40-work-driven/) |
